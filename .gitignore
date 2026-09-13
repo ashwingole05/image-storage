@@ -1,0 +1,13 @@
+.env
+.env.*
+!.env.example
+
+.idea/
+*.iml
+
+target/
+build/
+dist/
+node_modules/
+
+*.log

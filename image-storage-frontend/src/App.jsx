@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+
 function App() {
     const [file, setFile] = useState(null);
     const [images, setImages] = useState([]);
@@ -13,7 +15,7 @@ function App() {
     const fetchAllImages = async () => {
         try {
             const response = await fetch(
-                "http://localhost:8080/api/images"
+                `${API_BASE_URL}/api/images`
             );
 
             const data = await response.json();
@@ -50,7 +52,7 @@ function App() {
             formData.append("file", file);
 
             const response = await fetch(
-                "http://localhost:8080/api/images/upload",
+                `${API_BASE_URL}/api/images/upload`,
                 {
                     method: "POST",
                     body: formData,
@@ -91,7 +93,7 @@ function App() {
 
         try {
             const response = await fetch(
-                `http://localhost:8080/api/images/${id}`,
+                `${API_BASE_URL}/api/images/${id}`,
                 {
                     method: "DELETE",
                 }
@@ -120,7 +122,7 @@ function App() {
 
         try {
             const response = await fetch(
-                `http://localhost:8080/api/images/name/${encodeURIComponent(
+                `${API_BASE_URL}/api/images/name/${encodeURIComponent(
                     searchName
                 )}`
             );
@@ -255,7 +257,7 @@ function App() {
                             </div>
 
                             <img
-                                src={`http://localhost:8080/api/images/${image.id}`}
+                                src={`${API_BASE_URL}/api/images/${image.id}`}
                                 alt={image.name}
                             />
 
